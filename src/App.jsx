@@ -95,8 +95,32 @@ function EditableField({ value, onChange, multiline, placeholder }) {
   );
 }
 
+// ─── Delete Button (two-tap confirm) ──────────────────────────────
+function DeleteButton({ id, onDelete }) {
+  const [confirm, setConfirm] = useState(false);
+  return (
+    <button
+      onClick={()=>{ if(confirm){ onDelete(id); } else { setConfirm(true); setTimeout(()=>setConfirm(false),2500); }}}
+      title={confirm?"Tap again to confirm":"Delete"}
+      style={{
+        background:confirm?"#ef4444":"transparent",
+        border:`2px solid ${confirm?"#ef4444":"rgba(0,0,0,0.15)"}`,
+        borderRadius:"50%",width:30,height:30,cursor:"pointer",
+        display:"flex",alignItems:"center",justifyContent:"center",
+        fontSize:confirm?11:14,
+        color:confirm?"#fff":"rgba(0,0,0,0.3)",
+        flexShrink:0,transition:"all 0.2s",
+        WebkitTapHighlightColor:"transparent",
+        fontWeight:confirm?700:400,
+      }}>
+      {confirm?"✕":"🗑"}
+    </button>
+  );
+}
+
 // ─── Assignment Card ───────────────────────────────────────────────
-function AssignmentCard({ assignment, onUpdate, onToggle }) {
+function AssignmentCard({ assignment, onUpdate, onToggle, onDelete }) {
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const tc = tierColors[assignment.tier];
   return (
     <div style={{
@@ -123,18 +147,36 @@ function AssignmentCard({ assignment, onUpdate, onToggle }) {
             letterSpacing:0.5,textTransform:"uppercase",
           }}>{assignment.tier}</span>
         </div>
-        <button onClick={()=>onToggle(assignment.id)}
-          style={{
-            background:assignment.status?"#10b981":"transparent",
-            border:`2px solid ${assignment.status?"#10b981":"#a78bfa"}`,
-            borderRadius:"50%", width:30,height:30, cursor:"pointer",
-            display:"flex",alignItems:"center",justifyContent:"center",
-            fontSize:14,color:assignment.status?"#fff":"#a78bfa",
-            flexShrink:0,transition:"all 0.15s",
-            WebkitTapHighlightColor:"transparent",
-          }}>
-          {assignment.status?"✓":"○"}
-        </button>
+        <div style={{display:"flex",alignItems:"center",gap:6}}>
+          <button onClick={()=>onToggle(assignment.id)}
+            style={{
+              background:assignment.status?"#10b981":"transparent",
+              border:`2px solid ${assignment.status?"#10b981":"#a78bfa"}`,
+              borderRadius:"50%", width:30,height:30, cursor:"pointer",
+              display:"flex",alignItems:"center",justifyContent:"center",
+              fontSize:14,color:assignment.status?"#fff":"#a78bfa",
+              flexShrink:0,transition:"all 0.15s",
+              WebkitTapHighlightColor:"transparent",
+            }}>
+            {assignment.status?"✓":"○"}
+          </button>
+          <button
+            onClick={()=>{ if(confirmDelete){ onDelete(assignment.id); } else { setConfirmDelete(true); setTimeout(()=>setConfirmDelete(false),2500); }}}
+            title={confirmDelete?"Tap again to confirm delete":"Delete"}
+            style={{
+              background:confirmDelete?"#ef4444":"transparent",
+              border:`2px solid ${confirmDelete?"#ef4444":"rgba(0,0,0,0.15)"}`,
+              borderRadius:"50%",width:30,height:30,cursor:"pointer",
+              display:"flex",alignItems:"center",justifyContent:"center",
+              fontSize:confirmDelete?11:14,
+              color:confirmDelete?"#fff":"rgba(0,0,0,0.3)",
+              flexShrink:0,transition:"all 0.2s",
+              WebkitTapHighlightColor:"transparent",
+              fontWeight:confirmDelete?700:400,
+            }}>
+            {confirmDelete?"✕":"🗑"}
+          </button>
+        </div>
       </div>
 
       {/* Card body */}
@@ -296,6 +338,8 @@ export default function App() {
     setAssignments(prev=>prev.map(a=>a.id===id?{...a,status:!a.status}:a));
   const onAdd = (item) =>
     setAssignments(prev=>[...prev,item]);
+  const onDelete = (id) =>
+    setAssignments(prev=>prev.filter(a=>a.id!==id));
   const nextId = Math.max(...assignments.map(a=>a.id))+1;
 
   const filtered = assignments.filter(a=>{
@@ -519,7 +563,7 @@ export default function App() {
         ):view==="grid"?(
           <div style={{display:"grid",gridTemplateColumns:gridCols,gap:isMobile?12:18}}>
             {filtered.map(a=>(
-              <AssignmentCard key={a.id} assignment={a} onUpdate={onUpdate} onToggle={onToggle}/>
+              <AssignmentCard key={a.id} assignment={a} onUpdate={onUpdate} onToggle={onToggle} onDelete={onDelete}/>
             ))}
           </div>
         ):(
@@ -546,6 +590,7 @@ export default function App() {
                   <EditableField value={a.title} onChange={v=>onUpdate(a.id,"title",v)}/>
                 </span>
                 {!isMobile&&<span style={{background:"#f5f3ff",color:"#6d28d9",fontSize:11,borderRadius:20,padding:"2px 10px",fontWeight:600,flexShrink:0}}>{a.theme}</span>}
+                <DeleteButton id={a.id} onDelete={onDelete}/>
               </div>
             ))}
           </div>
