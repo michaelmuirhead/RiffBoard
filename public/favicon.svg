@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 148" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0840"/>
+      <stop offset="50%" style="stop-color:#3b1278"/>
+      <stop offset="100%" style="stop-color:#6d28d9"/>
+    </linearGradient>
+    <clipPath id="rounded">
+      <rect width="120" height="148" rx="27"/>
+    </clipPath>
+  </defs>
+  <!-- Background -->
+  <rect width="120" height="148" rx="27" fill="url(#bg)"/>
+  <!-- Nut -->
+  <rect x="26" y="94" width="68" height="5.5" rx="1.5" fill="rgba(255,255,255,0.92)"/>
+  <!-- Headstock body -->
+  <path d="M28,22 Q26,12 36,10 L84,10 Q94,12 92,22 L90,88 Q87,96 60,96 Q33,96 30,88 Z"
+        fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+  <!-- Neck -->
+  <rect x="46" y="99.5" width="28" height="46" rx="4" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+  <!-- Fret lines -->
+  <line x1="47" y1="110" x2="73" y2="110" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+  <line x1="47" y1="122" x2="73" y2="122" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+  <!-- Strings -->
+  <line x1="38" y1="10" x2="38" y2="145" stroke="rgba(255,255,255,0.38)" stroke-width="1.1"/>
+  <line x1="46" y1="10" x2="46" y2="145" stroke="rgba(255,255,255,0.28)" stroke-width="0.75"/>
+  <line x1="54" y1="10" x2="54" y2="145" stroke="rgba(255,255,255,0.24)" stroke-width="0.65"/>
+  <line x1="66" y1="10" x2="66" y2="145" stroke="rgba(255,255,255,0.24)" stroke-width="0.65"/>
+  <line x1="74" y1="10" x2="74" y2="145" stroke="rgba(255,255,255,0.28)" stroke-width="0.75"/>
+  <line x1="82" y1="10" x2="82" y2="145" stroke="rgba(255,255,255,0.38)" stroke-width="1.1"/>
+  <!-- Left tuner housings -->
+  <rect x="18" y="20" width="14" height="18" rx="3.5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+  <rect x="18" y="45" width="14" height="18" rx="3.5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+  <rect x="18" y="70" width="14" height="18" rx="3.5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+  <!-- Left peg buttons -->
+  <circle cx="25" cy="29" r="4.5" fill="#a78bfa"/>
+  <circle cx="25" cy="54" r="4.5" fill="#a78bfa"/>
+  <circle cx="25" cy="79" r="4.5" fill="#a78bfa"/>
+  <!-- Right tuner housings -->
+  <rect x="88" y="20" width="14" height="18" rx="3.5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+  <rect x="88" y="45" width="14" height="18" rx="3.5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+  <rect x="88" y="70" width="14" height="18" rx="3.5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+  <!-- Right peg buttons -->
+  <circle cx="95" cy="29" r="4.5" fill="#a78bfa"/>
+  <circle cx="95" cy="54" r="4.5" fill="#a78bfa"/>
+  <circle cx="95" cy="79" r="4.5" fill="#a78bfa"/>
+</svg>
