@@ -383,7 +383,7 @@ export default function App() {
       {/* ── HEADER ── */}
       <div style={{
         background:"linear-gradient(135deg,#1e1b4b 0%,#4c1d95 60%,#6d28d9 100%)",
-        padding:isMobile?"16px 16px 0":"28px 28px 0",
+        paddingTop:isMobile?"calc(env(safe-area-inset-top) + 16px)":"28px",paddingLeft:isMobile?"16px":"28px",paddingRight:isMobile?"16px":"28px",paddingBottom:0,
         position:"sticky",top:0,zIndex:100,
         boxShadow:"0 4px 24px rgba(109,40,217,0.25)",
       }}>
